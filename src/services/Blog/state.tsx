@@ -18,6 +18,7 @@ export const BlogState = () => {
   const [gender, setGender] = useState<any>();
   const [status, setStatus] = useState<any>();
   const [listBlog, setListBlog] = useState<any>([]);
+  const [search, setSearch] = useState<any>("");
 
   const updateUser = async () => {
     const id = userID;
@@ -167,5 +168,7 @@ export const BlogState = () => {
     deleteUsers,
     listBlog,
     getDataList,
+    search,
+    setSearch,
   };
 };

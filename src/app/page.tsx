@@ -5,7 +5,7 @@
 import style from "./page.module.scss";
 import cn from "classnames";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { AiOutlineQuestionCircle, AiOutlineFolderAdd } from "react-icons/ai";
+import { AiOutlineQuestionCircle } from "react-icons/ai";
 import { BsFillPersonFill } from "react-icons/bs";
 import { BlogState } from "@/services/Blog/state";
 import ModalEditData from "@/components/EditData";
@@ -39,7 +39,11 @@ export default function Home() {
     setStatus,
     deleteUsers,
     listBlog,
+    search,
+    setSearch,
   } = BlogState();
+
+  console.log(search);
 
   return (
     <>
@@ -93,7 +97,6 @@ export default function Home() {
                   onClick={() => setShowAddData(true)}
                   className={style.blog__add}
                 >
-                  <AiOutlineFolderAdd />
                   Tambah Data
                 </button>
               </div>
@@ -125,46 +128,69 @@ export default function Home() {
           ) : null}
 
           {currentId === "Users" ? (
-            <div className={cn(style.blog__users, "")}>
-              {users.map((v: any, i: any) => {
-                return (
-                  <div className={style.blog__users__content} key={i}>
-                    <h1 className="text-primary-01 font-semibold flex items-center gap-1">
-                      <BsFillPersonFill /> {v.name}
-                    </h1>
+            <div>
+              <div className="flex justify-end">
+                <input
+                  className="border border-primary-02 rounded-lg py-1 px-3 mt-3"
+                  placeholder="search"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+              </div>
 
-                    <p className="text-primary-01 mb-2 text-xs ">{v.email}</p>
+              <div className={style.blog__users}>
+                {users
+                  .filter((item: any) => {
+                    return search.toLowerCase() === ""
+                      ? item
+                      : item.name.toLowerCase().includes(search);
+                  })
+                  .map((v: any, i: any) => {
+                    return (
+                      <div className={style.blog__users__content} key={i}>
+                        <h1 className="text-primary-01 font-semibold flex items-center gap-1">
+                          <BsFillPersonFill /> {v.name}
+                        </h1>
 
-                    <div className="flex items-center gap-1">
-                      <p className="text-primary-01 font-semibold ">Gender:</p>
-                      {v.gender}
-                    </div>
+                        <p className="text-primary-01 mb-2 text-xs ">
+                          {v.email}
+                        </p>
 
-                    <div className="flex items-center gap-1">
-                      <p className="text-primary-01 font-semibold ">Status:</p>
-                      {v.status}
-                    </div>
+                        <div className="flex items-center gap-1">
+                          <p className="text-primary-01 font-semibold ">
+                            Gender:
+                          </p>
+                          {v.gender}
+                        </div>
 
-                    <div className="flex gap-2">
-                      <button
-                        className={style.blog__edit}
-                        onClick={() => getId(v.id, v.modal)}
-                      >
-                        <AiOutlineQuestionCircle />
-                        Edit
-                      </button>
+                        <div className="flex items-center gap-1">
+                          <p className="text-primary-01 font-semibold ">
+                            Status:
+                          </p>
+                          {v.status}
+                        </div>
 
-                      <button
-                        className={style.blog__delete}
-                        onClick={() => deleteUsers(v.id)}
-                      >
-                        <RiDeleteBin6Line />
-                        Delete
-                      </button>
-                    </div>
-                  </div>
-                );
-              })}
+                        <div className="flex gap-2">
+                          <button
+                            className={style.blog__edit}
+                            onClick={() => getId(v.id, v.modal)}
+                          >
+                            <AiOutlineQuestionCircle />
+                            Edit
+                          </button>
+
+                          <button
+                            className={style.blog__delete}
+                            onClick={() => deleteUsers(v.id)}
+                          >
+                            <RiDeleteBin6Line />
+                            Delete
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  })}
+              </div>
             </div>
           ) : null}
 

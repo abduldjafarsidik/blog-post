@@ -32,22 +32,33 @@
     }
     
     &__users {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 26px;
-        margin-top: 40px;
-        min-height: 200px;
-
-        @media screen and (max-width: 370px) {
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-          }
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
 
         &__content {
             border-radius: 18px;
             box-shadow: 1px 3px 18px -8px rgba(0,0,0,0.75);
             padding: 8px;
             margin-top: 20px;
-          
+        
+            @media screen and (min-width: 1280px) {
+                width: calc(25% - 16px);
+            }
+
+            @media screen and (max-width: 1279px) {
+                width: calc(33% - 12px);
+            }
+
+            @media screen and (max-width: 768px) {
+                width: calc(50% - 12px);
+            }
+
+            @media screen and (max-width: 500px) {
+                width: calc(100% - 12px);
+            }
+      
+           
         }
     }
 
