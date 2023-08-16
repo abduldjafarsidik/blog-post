@@ -1,0 +1,108 @@
+.blog {
+    justify-content: center;
+    padding: 12px;
+    margin-top: 40px;
+
+    &__wrapper {
+        width: 100%;
+    }
+
+    &__list {
+        display: grid;
+        gap: 24px;
+        grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+
+        @media screen and (max-width: 541px) {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          }
+
+          @media screen and (max-width: 321px) {
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          }
+
+        &__content {
+            border:1px solid #F1F0E8;
+            padding: 8px;
+            // max-width: 500px;
+            // min-height: 200px;
+            margin-top: 40px;
+            border-radius: 18px;
+            box-shadow: 1px 3px 18px -8px rgba(0,0,0,0.75);
+        }
+    }
+    
+    &__users {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 26px;
+        margin-top: 40px;
+        min-height: 200px;
+
+        @media screen and (max-width: 370px) {
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+          }
+
+        &__content {
+            border-radius: 18px;
+            box-shadow: 1px 3px 18px -8px rgba(0,0,0,0.75);
+            padding: 8px;
+            margin-top: 20px;
+          
+        }
+    }
+
+    &__delete {
+       background-color: red;
+       margin-top: 12px;
+       border-radius: 8px;
+       padding: 5px;
+       color: white;
+       font-weight: 600;  
+       display: flex;
+       align-items: center;
+       gap: 4px;
+    }
+
+    &__edit {
+        background-color: green;
+        margin-top: 12px;
+        border-radius: 8px;
+        padding: 5px;
+        color: white;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+     }
+
+     &__add {
+        background-color: theme("colors.primary-01");
+        border-radius: 8px;
+        padding: 8px 16px;
+        color: white;
+        font-weight: 600;
+        font-size: 18px;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+
+        @media screen and (max-width: 768px) {
+            padding: 2px 8px;
+            font-size: 14px;
+          }
+     }
+
+     &__tab {
+        font-size: 18px;
+        line-height: 18px;
+        font-weight: 600;
+        color: theme("colors.primary-02");
+
+        @media screen and (max-width: 768px) {
+            font-size: 16px;
+            line-height: 16px;
+            width: 100%;
+          }
+     }
+}
